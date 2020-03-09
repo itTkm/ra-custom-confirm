@@ -1,0 +1,53 @@
+{
+  "name": "ra-custom-confirm",
+  "version": "0.0.0",
+  "description": "Your custom confirm dialog for React-admin.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"WARNING: no test specified\" && exit 0",
+    "lint": "eslint src",
+    "build": "babel src --out-dir lib",
+    "preversion": "npm test",
+    "version": "npm run build && git add --all lib",
+    "postversion": "git push && git push --tags && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itTkm/ra-custom-confirm.git"
+  },
+  "keywords": [
+    "react",
+    "react-admin",
+    "custom",
+    "confirm"
+  ],
+  "author": "ittkm <t.tsuji.2465+npm@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itTkm/ra-custom-confirm/issues"
+  },
+  "homepage": "https://github.com/itTkm/ra-custom-confirm#readme",
+  "dependencies": {
+    "@material-ui/core": "^4.9.5",
+    "classnames": "^2.2.6",
+    "prop-types": "^15.7.2",
+    "ra-core": "^3.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "@material-ui/icons": "^4.9.1",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-react": "^7.18.3",
+    "react": "^16.13.0"
+  },
+  "peerDependencies": {
+    "ra-core": "^3.0.0 || ^2.3.4"
+  }
+}
