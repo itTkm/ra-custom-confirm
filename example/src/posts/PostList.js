@@ -1,13 +1,14 @@
 import BookIcon from '@material-ui/icons/Book';
 import Chip from '@material-ui/core/Chip';
 import { useMediaQuery, makeStyles } from '@material-ui/core';
-import React, { Children, Fragment, cloneElement } from 'react';
+import React, { Children, Fragment, cloneElement, useState } from 'react';
 import lodashGet from 'lodash/get';
 import jsonExport from 'jsonexport/dist';
 import {
   BooleanField,
   BulkDeleteButton,
   BulkExportButton,
+  Button,
   ChipField,
   Datagrid,
   DateField,
@@ -20,6 +21,7 @@ import {
   SearchInput,
   ShowButton,
   SimpleList,
+  SimpleShowLayout,
   SingleFieldList,
   TextField,
   TextInput,
@@ -35,7 +37,7 @@ import {
   DeleteConfirmContent
 } from './PostDeleteConfirm';
 
-import PostConfirmButton from './PostConfirmButton';
+import CustomConfirm from 'ra-custom-confirm';
 
 const useQuickFilterStyles = makeStyles(theme => ({
   chip: {
@@ -113,6 +115,62 @@ const PostListActionToolbar = ({ children, ...props }) => {
     </div>
   );
 };
+
+// Define your custom title of confirm dialog
+const CustomConfirmTitle = 'Are you sure you want to do?';
+
+// Define your custom contents of confirm dialog
+const CustomConfirmContent = props => {
+  return (
+    <SimpleShowLayout {...props}>
+      <TextField source="id" />
+      <TextField source="title" />
+      <DateField
+        source="published_at"
+      />
+      <ReferenceArrayField
+        label="Tags"
+        reference="tags"
+        source="tags"
+        sortBy="tags.name"
+      >
+        <SingleFieldList>
+          <ChipField source="name" />
+        </SingleFieldList>
+      </ReferenceArrayField>
+    </SimpleShowLayout>
+  );
+};
+
+const PostConfirmButton = props => {
+  const [open, setOpen] = useState(false);
+
+  const handleClick = (event) => {
+    event.stopPropagation();    // support with rowClick on Datagrid
+    setOpen(true);
+  };
+
+  const handleDialogClose = () => setOpen(false);
+
+  const handleConfirm = () => {
+    // do something here
+    console.log('Confirmed!!!!');
+    setOpen(false);
+  };
+
+  return (
+    <Fragment>
+      <Button label="Send" onClick={handleClick} />
+      <CustomConfirm {...props}
+        isOpen={open}
+        title={CustomConfirmTitle}      // your custom title of confirm dialog
+        content={CustomConfirmContent}  // your custom contents of confirm dialog
+        onConfirm={handleConfirm}
+        onClose={handleDialogClose}
+      />
+    </Fragment>
+  );
+}
 
 const rowClick = (id, basePath, record) => {
   if (record.commentable) {

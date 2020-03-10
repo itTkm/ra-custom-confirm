@@ -21,6 +21,7 @@ yarn add ra-custom-confirm
 ## Usage
 
 ```js
+import React, { Fragment, useState } from 'react';
 import CustomConfirm from 'ra-custom-confirm';
 
 // Define your custom title of confirm dialog
@@ -38,22 +39,27 @@ const CustomConfirmContent = props => {
   );
 };
 
-const SendButton = ({ selectedIds }) => {
+const SendEmailButton = ({ selectedIds }) => {
   const [open, setOpen] = useState(false);
-  const handleClick = () => setOpen(true);
+
+  const handleClick = (event) => {
+    event.stopPropagation();    // support with rowClick on Datagrid
+    setOpen(true);
+  };
+
   const handleDialogClose = () => setOpen(false);
 
   const handleConfirm = () => {
     // do something here
+    console.log('Confirmed!!!!');
     setOpen(false);
   };
 
   return (
     <Fragment>
       <Button label="Send" onClick={handleClick} />
-      <Confirm
+      <CustomConfirm {...props}
         isOpen={open}
-        loading={loading}
         title={CustomConfirmTitle}      // your custom title of confirm dialog
         content={CustomConfirmContent}  // your custom contents of confirm dialog
         onConfirm={handleConfirm}
@@ -71,7 +77,7 @@ const InformationList = props => {
         <TextField source='title' label='title' />
         <TextField source='date' label='date' />
         <TextField source='user' label='user' />
-        <SendButton />
+        <SendEmailButton />
       </Datagrid>
     </List>
   );

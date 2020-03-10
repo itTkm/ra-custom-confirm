@@ -38,9 +38,6 @@ const styles = theme =>
 
 const CustomConfirmContent = (props) => {
   const { content } = props;
-  console.dir(props);
-  console.dir(content);
-  console.log(typeof content);
   return React.createElement(content, props);
 }
 
