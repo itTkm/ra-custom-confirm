@@ -1,6 +1,6 @@
 {
   "name": "ra-custom-confirm",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Your custom confirm dialog for React-admin.",
   "main": "lib/index.js",
   "scripts": {
