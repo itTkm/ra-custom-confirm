@@ -39,7 +39,7 @@ const CustomConfirmContent = props => {
   );
 };
 
-const SendEmailButton = ({ selectedIds }) => {
+const SendEmailButton = props => {
   const [open, setOpen] = useState(false);
 
   const handleClick = (event) => {
