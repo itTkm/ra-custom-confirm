@@ -36,12 +36,12 @@ The credentials are *login/password*
 
 ```js
 import React, { Fragment, useState } from 'react';
-import ActionCheck from '@material-ui/icons/CheckCircle';
+import Share from '@material-ui/icons/Share';
 import AlertError from '@material-ui/icons/ErrorOutline';
 import CustomConfirm from 'ra-custom-confirm';
 
 // Define your custom title of confirm dialog
-const CustomConfirmTitle = 'Are you sure you want to do?';
+const CustomConfirmTitle = 'Are you sure you want to share?';
 
 // Define your custom contents of confirm dialog
 const CustomConfirmContent = props => {
@@ -55,7 +55,7 @@ const CustomConfirmContent = props => {
   );
 };
 
-const SendEmailButton = props => {
+const ShareButton = props => {
   const [open, setOpen] = useState(false);
 
   const handleClick = (event) => {
@@ -67,20 +67,19 @@ const SendEmailButton = props => {
 
   const handleConfirm = () => {
     // do something here
-    console.log('Confirmed!!!!');
     setOpen(false);
   };
 
   return (
     <Fragment>
-      <Button label="Send" onClick={handleClick} />
+      <Button label="Share" onClick={handleClick}><Share /></Button>
       <CustomConfirm {...props}
         isOpen={open}
         title={CustomConfirmTitle}      // your custom title of confirm dialog
         content={CustomConfirmContent}  // your custom contents of confirm dialog
-        confirm='Confirm'               // label of confirm button (default: 'Confirm')
+        confirm='Share'                 // label of confirm button (default: 'Confirm')
         confirmColor='primary'          // color of confirm button ('primary' or 'warning', default: 'primary')
-        ConfirmIcon={ActionCheck}       // icon of confirm button (default: 'ActionCheck')
+        ConfirmIcon={Share}             // icon of confirm button (default: 'ActionCheck')
         cancel='Cancel'                 // label of cancel button (default: 'Cancel')
         CancelIcon={AlertError}         // icon of cancel button (default: 'AlertError')
         onConfirm={handleConfirm}
@@ -90,7 +89,7 @@ const SendEmailButton = props => {
   );
 }
 
-const InformationList = props => {
+const PostList = props => {
   const translate = useTranslate();
   return (
     <List {...props} >
@@ -98,13 +97,13 @@ const InformationList = props => {
         <TextField source='title' label='title' />
         <TextField source='date' label='date' />
         <TextField source='user' label='user' />
-        <SendEmailButton />
+        <ShareButton />
       </Datagrid>
     </List>
   );
 };
 
-export default InformationList;
+export default PostList;
 ```
 
 ## License

@@ -31,13 +31,8 @@ import {
 import ResetViewsButton from './ResetViewsButton';
 export const PostIcon = BookIcon;
 
-import DeleteWithCustomConfirmButton from "ra-delete-with-custom-confirm-button";
-import {
-  DeleteConfirmTitle,
-  DeleteConfirmContent
-} from './PostDeleteConfirm';
-
 import CustomConfirm from 'ra-custom-confirm';
+import Share from '@material-ui/icons/Share';
 
 const useQuickFilterStyles = makeStyles(theme => ({
   chip: {
@@ -117,7 +112,7 @@ const PostListActionToolbar = ({ children, ...props }) => {
 };
 
 // Define your custom title of confirm dialog
-const CustomConfirmTitle = 'Are you sure you want to do?';
+const CustomConfirmTitle = 'Are you sure you want to share?';
 
 // Define your custom contents of confirm dialog
 const CustomConfirmContent = props => {
@@ -142,7 +137,7 @@ const CustomConfirmContent = props => {
   );
 };
 
-const PostConfirmButton = props => {
+const ShareButton = props => {
   const [open, setOpen] = useState(false);
 
   const handleClick = (event) => {
@@ -154,17 +149,18 @@ const PostConfirmButton = props => {
 
   const handleConfirm = () => {
     // do something here
-    alert('Confirmed!!');
     setOpen(false);
   };
 
   return (
     <Fragment>
-      <Button label="Send" onClick={handleClick} />
+      <Button label="Share" onClick={handleClick}><Share /></Button>
       <CustomConfirm {...props}
         isOpen={open}
         title={CustomConfirmTitle}      // your custom title of confirm dialog
         content={CustomConfirmContent}  // your custom contents of confirm dialog
+        confirm='Share'                  // label of confirm button
+        ConfirmIcon={Share}          // icon of confirm button
         onConfirm={handleConfirm}
         onClose={handleDialogClose}
       />
@@ -233,11 +229,7 @@ const PostList = props => {
             <PostListActionToolbar>
               <EditButton />
               <ShowButton />
-              <PostConfirmButton />
-              <DeleteWithCustomConfirmButton
-                confirmTitle={DeleteConfirmTitle}
-                confirmContent={DeleteConfirmContent}
-              />
+              <ShareButton />
             </PostListActionToolbar>
           </Datagrid>
         )}
