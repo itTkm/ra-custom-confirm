@@ -18,10 +18,26 @@ npm install --save ra-custom-confirm
 yarn add ra-custom-confirm
 ```
 
+## Demo
+
+After having cloned this repository, run the following commands:
+
+```bash
+cd example/
+yarn install
+yarn start
+```
+
+And then browse to [http://localhost:8080/](http://localhost:8080/).
+
+The credentials are *login/password*
+
 ## Usage
 
 ```js
 import React, { Fragment, useState } from 'react';
+import ActionCheck from '@material-ui/icons/CheckCircle';
+import AlertError from '@material-ui/icons/ErrorOutline';
 import CustomConfirm from 'ra-custom-confirm';
 
 // Define your custom title of confirm dialog
@@ -43,7 +59,7 @@ const SendEmailButton = props => {
   const [open, setOpen] = useState(false);
 
   const handleClick = (event) => {
-    event.stopPropagation();    // support with rowClick on Datagrid
+    event.stopPropagation();            // support with rowClick on Datagrid
     setOpen(true);
   };
 
@@ -62,6 +78,11 @@ const SendEmailButton = props => {
         isOpen={open}
         title={CustomConfirmTitle}      // your custom title of confirm dialog
         content={CustomConfirmContent}  // your custom contents of confirm dialog
+        confirm='Confirm'               // label of confirm button (default: 'Confirm')
+        confirmColor='primary'          // color of confirm button ('primary' or 'warning', default: 'primary')
+        ConfirmIcon={ActionCheck}       // icon of confirm button (default: 'ActionCheck')
+        cancel='Cancel'                 // label of cancel button (default: 'Cancel')
+        CancelIcon={AlertError}         // icon of cancel button (default: 'AlertError')
         onConfirm={handleConfirm}
         onClose={handleDialogClose}
       />

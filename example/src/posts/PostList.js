@@ -146,7 +146,7 @@ const PostConfirmButton = props => {
   const [open, setOpen] = useState(false);
 
   const handleClick = (event) => {
-    event.stopPropagation();    // support with rowClick on Datagrid
+    event.stopPropagation();            // support with rowClick on Datagrid
     setOpen(true);
   };
 
@@ -154,7 +154,7 @@ const PostConfirmButton = props => {
 
   const handleConfirm = () => {
     // do something here
-    console.log('Confirmed!!!!');
+    alert('Confirmed!!');
     setOpen(false);
   };
 

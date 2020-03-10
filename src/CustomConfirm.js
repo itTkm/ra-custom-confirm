@@ -63,6 +63,7 @@ class CustomConfirm extends Component {
     e.stopPropagation();
     this.setState({ loading: true });
     this.props.onConfirm();
+    this.setState({ loading: false });
   };
 
   handleClick = e => {
@@ -76,6 +77,8 @@ class CustomConfirm extends Component {
       confirm,
       cancel,
       confirmColor,
+      ConfirmIcon,
+      CancelIcon,
       onClose,
       classes,
       translate,
@@ -98,7 +101,7 @@ class CustomConfirm extends Component {
         </DialogContent>
         <DialogActions>
           <Button disabled={loading} onClick={onClose}>
-            <AlertError className={classes.iconPaddingStyle} />
+            <CancelIcon className={classes.iconPaddingStyle} />
             {translate(cancel, { _: cancel })}
           </Button>
           <Button
@@ -112,7 +115,7 @@ class CustomConfirm extends Component {
             })}
             autoFocus
           >
-            <ActionCheck className={classes.iconPaddingStyle} />
+            <ConfirmIcon className={classes.iconPaddingStyle} />
             {translate(confirm, { _: confirm })}
           </Button>
         </DialogActions>
@@ -126,6 +129,8 @@ CustomConfirm.propTypes = {
   classes: PropTypes.object.isRequired,
   confirm: PropTypes.string.isRequired,
   confirmColor: PropTypes.string.isRequired,
+  ConfirmIcon: PropTypes.elementType.isRequired,
+  CancelIcon: PropTypes.elementType.isRequired,
   content: PropTypes.element.isRequired,
   isOpen: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
@@ -139,6 +144,8 @@ CustomConfirm.defaultProps = {
   classes: {},
   confirm: 'ra.action.confirm',
   confirmColor: 'primary',
+  ConfirmIcon: ActionCheck,
+  CancelIcon: AlertError,
   isOpen: false,
 };
 
