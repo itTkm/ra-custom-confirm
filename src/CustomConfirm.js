@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
+import { Button } from 'react-admin';
+import { translate } from 'ra-core';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
 import { withStyles, createStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import ActionCheck from '@material-ui/icons/CheckCircle';
 import AlertError from '@material-ui/icons/ErrorOutline';
-import classnames from 'classnames';
-import compose from 'recompose/compose';
-import { translate } from 'ra-core';
 
 const styles = theme =>
   createStyles({
@@ -51,7 +51,9 @@ const CustomConfirmContent = (props) => {
  *     content={YourCustomConfirmContent}
  *     confirm="Yes"
  *     confirmColor="primary"
+ *     ConfirmIcon={ActionCheck}
  *     cancel="Cancel"
+ *     CancelIcon={AlertError}
  *     onConfirm={() => { // do something }}
  *     onClose={() => { // do something }}
  * />
@@ -62,7 +64,7 @@ class CustomConfirm extends Component {
   handleConfirm = e => {
     e.stopPropagation();
     this.setState({ loading: true });
-    this.props.onConfirm();
+    this.props.onConfirm(e);
     this.setState({ loading: false });
   };
 
@@ -88,6 +90,7 @@ class CustomConfirm extends Component {
 
     return (
       <Dialog
+        fullWidth
         open={isOpen}
         onClose={onClose}
         onClick={this.handleClick}
@@ -100,11 +103,15 @@ class CustomConfirm extends Component {
           <CustomConfirmContent {...this.props} />
         </DialogContent>
         <DialogActions>
-          <Button disabled={loading} onClick={onClose}>
+          <Button
+            label={cancel}
+            disabled={loading}
+            onClick={onClose}
+          >
             <CancelIcon className={classes.iconPaddingStyle} />
-            {translate(cancel, { _: cancel })}
           </Button>
           <Button
+            label={confirm}
             disabled={loading}
             onClick={this.handleConfirm}
             className={classnames('ra-confirm', {
@@ -116,7 +123,6 @@ class CustomConfirm extends Component {
             autoFocus
           >
             <ConfirmIcon className={classes.iconPaddingStyle} />
-            {translate(confirm, { _: confirm })}
           </Button>
         </DialogActions>
       </Dialog>
@@ -141,11 +147,11 @@ CustomConfirm.propTypes = {
 
 CustomConfirm.defaultProps = {
   cancel: 'ra.action.cancel',
+  CancelIcon: AlertError,
   classes: {},
   confirm: 'ra.action.confirm',
   confirmColor: 'primary',
   ConfirmIcon: ActionCheck,
-  CancelIcon: AlertError,
   isOpen: false,
 };
 
