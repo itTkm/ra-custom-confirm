@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'react-admin';
 import { translate } from 'ra-core';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
@@ -8,6 +7,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
 import { withStyles, createStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import ActionCheck from '@material-ui/icons/CheckCircle';
@@ -104,14 +104,13 @@ class CustomConfirm extends Component {
         </DialogContent>
         <DialogActions>
           <Button
-            label={cancel}
             disabled={loading}
             onClick={onClose}
           >
             <CancelIcon className={classes.iconPaddingStyle} />
+            {translate(cancel, { _: cancel })}
           </Button>
           <Button
-            label={confirm}
             disabled={loading}
             onClick={this.handleConfirm}
             className={classnames('ra-confirm', {
@@ -123,6 +122,7 @@ class CustomConfirm extends Component {
             autoFocus
           >
             <ConfirmIcon className={classes.iconPaddingStyle} />
+            {translate(confirm, { _: confirm })}
           </Button>
         </DialogActions>
       </Dialog>
