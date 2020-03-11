@@ -37,7 +37,7 @@ The credentials are *login/password*
 ```js
 import React, { Fragment, useState } from 'react';
 import Share from '@material-ui/icons/Share';
-import AlertError from '@material-ui/icons/ErrorOutline';
+import ErrorOutline from '@material-ui/icons/ErrorOutline';
 import CustomConfirm from 'ra-custom-confirm';
 
 // Define your custom title of confirm dialog
@@ -79,9 +79,9 @@ const ShareButton = props => {
         content={CustomConfirmContent}  // your custom contents of confirm dialog
         confirm='Share'                 // label of confirm button (default: 'Confirm')
         confirmColor='primary'          // color of confirm button ('primary' or 'warning', default: 'primary')
-        ConfirmIcon={Share}             // icon of confirm button (default: 'ActionCheck')
+        ConfirmIcon={Share}             // icon of confirm button from @material-ui/icons (default: 'CheckCircle')
         cancel='Cancel'                 // label of cancel button (default: 'Cancel')
-        CancelIcon={AlertError}         // icon of cancel button (default: 'AlertError')
+        CancelIcon={ErrorOutline}       // icon of cancel button from @material-ui/icons (default: 'ErrorOutline')
         onConfirm={handleConfirm}
         onClose={handleDialogClose}
       />
@@ -105,6 +105,21 @@ const PostList = props => {
 
 export default PostList;
 ```
+
+## props
+
+Name|Type|Description|Default
+---|---|---|---
+title|string|your custom title of confirm dialog|
+content|element|your custom contents of confirm|
+isOpen|bool|dialog open or not|false
+onClose|func|function on close|
+onConfirm|func|function on confirm|
+confirm|string|label of confirm button|'ra.action.confirm' (`Confirm` in English)
+confirmColor|string|color of confirm button ('primary' or 'warning')|'primary'
+ConfirmIcon|element|icon of confirm button from [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)|![CheckCircle](https://github.com/google/material-design-icons/blob/master/action/drawable-hdpi/ic_check_circle_black_18dp.png?raw=true "import CheckCircle from '@material-ui/icons/CheckCircle';")
+cancel|string|label of cancel button|'ra.action.cancel' (`Cancel` in English)
+CancelIcon|element|icon of cancel button from [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)|![ErrorOutline](https://github.com/google/material-design-icons/blob/master/alert/drawable-hdpi/ic_error_outline_black_18dp.png?raw=true "import ErrorOutline from '@material-ui/icons/ErrorOutline';")
 
 ## License
 
