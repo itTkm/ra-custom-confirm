@@ -1,11 +1,11 @@
-# Sample of ra-delete-with-custom-confirm-button
+# Sample of ra-custom-confirm
 
-This is the sample application of `ra-delete-with-custom-confirm-button`.
+This is the sample application of `ra-custom-confirm`.
 It is based [React-admin simple](https://github.com/marmelab/react-admin/tree/master/examples/simple) project.
 
 ## How to run
 
-After having cloned the ra-delete-with-custom-confirm-button repository, run the following commands:
+After having cloned the ra-custom-confirm repository, run the following commands:
 
 ```sh
 yarn install

@@ -21,33 +21,17 @@ import {
   ReferenceArrayInput,
   ReferenceManyField,
   ReferenceInput,
-  SaveButton,
   SelectInput,
   SimpleFormIterator,
   TabbedForm,
   TextField,
   TextInput,
-  Toolbar,
   minValue,
   number,
   required,
   FormDataConsumer,
 } from 'react-admin'; // eslint-disable-line import/no-unresolved
 import PostTitle from './PostTitle';
-import { makeStyles } from '@material-ui/core/styles';
-
-import DeleteWithCustomConfirmButton from "ra-delete-with-custom-confirm-button";
-import {
-  DeleteConfirmTitle,
-  DeleteConfirmContent
-} from './PostDeleteConfirm';
-
-const useToolbarStyles = makeStyles({
-  toolbar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-});
 
 const EditActions = ({ basePath, data, hasShow }) => (
   <TopToolbar>
@@ -60,25 +44,10 @@ const EditActions = ({ basePath, data, hasShow }) => (
   </TopToolbar>
 );
 
-const CustomToolbar = props => {
-  const classes = useToolbarStyles();
-  return (
-    <Toolbar {...props} classes={classes}>
-      <SaveButton />
-      <DeleteWithCustomConfirmButton
-        confirmTitle={DeleteConfirmTitle}
-        confirmContent={DeleteConfirmContent}
-      />
-    </Toolbar>
-  );
-};
-
-
 const PostEdit = ({ permissions, ...props }) => (
   <Edit title={<PostTitle />} actions={<EditActions />} {...props}>
     <TabbedForm
       defaultValue={{ average_note: 0 }}
-      toolbar={<CustomToolbar />}
     >
       <FormTab label="post.form.summary">
         <TextInput disabled source="id" />
