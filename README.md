@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/ra-custom-confirm.svg)](https://www.npmjs.com/package/ra-custom-confirm)
 [![npm downloads](https://img.shields.io/npm/dt/ra-custom-confirm)](https://www.npmjs.com/package/ra-custom-confirm)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](./LICENSE)
-[![Build Status](https://travis-ci.org/itTkm/ra-custom-confirm.svg?branch=master)](https://travis-ci.org/itTkm/ra-custom-confirm)
+[![Build Status](https://travis-ci.com/itTkm/ra-custom-confirm.svg?branch=master)](https://travis-ci.com/itTkm/ra-custom-confirm)
 
 Your custom confirm dialog for [React-admin](https://marmelab.com/react-admin/).
 
